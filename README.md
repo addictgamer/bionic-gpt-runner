@@ -14,9 +14,9 @@ NAME=llama2-uncensored task download-model-from-library
 
 Then start a terminal in this repo and start docker:
 ```bash
-docker-compose -f docker-compose.yml up
+task start # or `task start-daemon`
 ```
-Then configure ollama.
+Then configure Bionic GPT to use your ollama endpoint.
 
 ## Bad Install Instructions
 

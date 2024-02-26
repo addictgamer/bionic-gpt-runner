@@ -1,0 +1,33 @@
+version: '3'
+
+env:
+  DOCKER_GATEWAY_HOST:
+    sh: ip route | grep default | awk '{ print $9 }'
+
+tasks:
+  start:
+    desc: "Start Bionic GPT (interactive shell with live log trace)."
+    preconditions:
+      - pgrep -f ollama
+    interactive: true
+    cmds:
+      - |
+        echo "Docker gateway host is $DOCKER_GATEWAY_HOST"
+        docker-compose -f docker-compose.yml up
+
+  start-daemon:
+    desc: "Start Bionic GPT (daemon mode; background task)."
+    preconditions:
+      - pgrep -f ollama
+    interactive: true
+    cmds:
+      - |
+        echo "Docker gateway host is $DOCKER_GATEWAY_HOST"
+        docker-compose -f docker-compose.yml up -d
+
+  stop-daemon:
+    desc: "Start Bionic GPT (daemon mode; background task)."
+    interactive: true
+    cmds:
+      - |
+        docker-compose -f docker-compose.yml down
