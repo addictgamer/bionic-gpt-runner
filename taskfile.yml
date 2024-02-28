@@ -19,15 +19,13 @@ tasks:
     desc: "Start Bionic GPT (daemon mode; background task)."
     preconditions:
       - pgrep -f ollama
-    interactive: true
     cmds:
       - |
         echo "Docker gateway host is $DOCKER_GATEWAY_HOST"
         docker-compose -f docker-compose.yml up -d
 
   stop-daemon:
-    desc: "Start Bionic GPT (daemon mode; background task)."
-    interactive: true
+    desc: "Stops the running Bionic GPT docker container (intended to be used with start-daemon)"
     cmds:
       - |
         docker-compose -f docker-compose.yml down
